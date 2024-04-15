@@ -15,8 +15,8 @@ app.use(cors());
 
 app.use(express.json());
 
-app.use(errorHandler);
 app.use("/api/user", userRouter);
+app.use(errorHandler);
 
 console.log("app is working");
 
