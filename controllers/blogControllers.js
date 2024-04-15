@@ -6,7 +6,7 @@ const Blog = require("../models/blogModel");
 //@route GET /api/blogs/all
 //@access private
 const getAllBlogs = asyncHandler(async (req, res) => {
-  const blogs = await Blogs.find().limit(10);
+  const blogs = await Blogs.find().sort({_id: -1}).limit(10);
   res.status(200).json(blogs);
 });
 
