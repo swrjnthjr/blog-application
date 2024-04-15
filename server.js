@@ -5,6 +5,7 @@ const port = process.env.PORT || 5000;
 const connectDb = require("./config/dbConncetion");
 
 const userRouter = require("./routes/userHandler");
+const blogRouter = require("./routes/blogHandler");
 const errorHandler = require("./middleware/errorHandler");
 
 connectDb();
@@ -16,6 +17,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/user", userRouter);
+app.use("/api/blog", blogRouter);
 app.use(errorHandler);
 
 console.log("app is working");
