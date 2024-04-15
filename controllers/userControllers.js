@@ -8,9 +8,9 @@ const User = require("../models/userModel");
 //@route POST /api/user/register
 //@access public
 const createUser = asyncHandler(async (req, res) => {
-  const { userName, email, password } = req.body;
+  const { userName, email, password, firstName, lastName, dob } = req.body;
   console.log(req.body);
-  if (!userName || !email || !password) {
+  if (!userName || !email || !password || !firstName || !lastName || !dob) {
     res.status(400);
     throw new Error("All fields are mandatory.");
   }
@@ -26,6 +26,9 @@ const createUser = asyncHandler(async (req, res) => {
   const user = await User.create({
     userName,
     email,
+    firstName,
+    lastName,
+    dob,
     password: hashPassword,
   });
   if (user) {
@@ -56,6 +59,8 @@ const loginUser = asyncHandler(async (req, res) => {
       {
         user: {
           username: user.userName,
+          firstName:user.firstName,
+          lastName:user.lastName,
           email: user.email,
           id: user.id,
         },
